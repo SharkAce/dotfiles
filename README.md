@@ -1,2 +1,2 @@
 # dotfiles
-dotfiles for my gentoo build
+Dotfiles from my gentoo build
