@@ -14,10 +14,22 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
+# Color 	Code
+# 
+# Black 	0;30
+# Blue 	  0;34
+# Green 	0;32
+# Cyan 	  0;36
+# Red 	  0;31
+# Purple 	0;35
+# Brown 	0;33
 
 # Put your fun stuff here.
-PS1='\[\e]0;\u@\h: \w\a\]╭\[ \033[m\]|\[\033[1;33m\]\t\[\033[m\]|\[\e[1;32m\]\u\[\e[m\]:\[\e[0m\]\[\e[1;36m\][\W]\[\e[0m\]\n╰─> '
+PS1='\[\e]0;\u@\h: \w\a\]╭\[ \033[m\]|\[\033[1;36m\]\t\[\033[m\]|\[\e[1;34m\]\u\[\e[m\]:\[\e[0m\]\[\e[1;35m\][\W]\[\e[0m\]\n╰─> '
 source ~/.bash_aliases
 export EDITOR=vim
 set -o vi
+alias hello="echo hello world"
 
+export HISTSIZE=-1
+export HISTFILESIZE=-1
