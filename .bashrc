@@ -29,7 +29,6 @@ PS1='\[\e]0;\u@\h: \w\a\]╭\[ \033[m\]|\[\033[1;36m\]\t\[\033[m\]|\[\e[1;34m\]\
 source ~/.bash_aliases
 export EDITOR=vim
 set -o vi
-alias hello="echo hello world"
 
 export HISTSIZE=-1
 export HISTFILESIZE=-1
