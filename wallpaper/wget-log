@@ -1,0 +1,11 @@
+--2022-06-12 02:01:33--  https://steamuserimages-a.akamaihd.net/ugc/940586530515504757/CDDE77CB810474E1C07B945E40AE4713141AFD76/?imw=5000
+Resolving steamuserimages-a.akamaihd.net... 184.150.154.9, 184.150.154.113, 2001:4958:300:4b3::b896:3123, ...
+Connecting to steamuserimages-a.akamaihd.net|184.150.154.9|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1750886 (1.7M) [image/jpeg]
+Saving to: ‘index.html?imw=5000’
+
+index.html?imw=5000         0%[                                      ]       0  --.-KB/s               index.html?imw=5000        47%[=================>                    ] 817.12K  3.91MB/s               index.html?imw=5000       100%[=====================================>]   1.67M  4.60MB/s    in 0.4s    
+
+2022-06-12 02:01:34 (4.60 MB/s) - ‘index.html?imw=5000’ saved [1750886/1750886]
+
