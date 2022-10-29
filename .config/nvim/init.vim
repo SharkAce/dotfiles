@@ -13,27 +13,31 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'morhetz/gruvbox'
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
+Plug 'bfrg/vim-cpp-modern'
+Plug 'preservim/nerdtree'
 
 " Initialize plugin system
 call plug#end()
+
+
+nnoremap <C-n> :NERDTreeToggle<CR>
+
+au BufRead,BufNewFile *.ludi set filetype=ludi
 
 set nohlsearch
 set nu rnu
 set relativenumber
 set cursorline
-set smarttab
 set cindent
 set tabstop=2
 set shiftwidth=2
-set expandtab
 set hidden
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
 set noshowmode
-
-
-nnoremap <C-m> :Lex! \| vertical resize -45
+set pumheight=10
+set mouse=a
 
 lua << END
 
@@ -49,7 +53,7 @@ require('lualine').setup()
 
 END
 
-let g:NERDTreeIgnore = ['^node_modules$']
+let g:NERDTreeIgnore = ['^node_modules$', '\.o$', '\~$']
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
