@@ -25,11 +25,8 @@ fi
 # Brown 	0;33
 
 # Put your fun stuff here.
-PS1='╭ |\[\033[1;36m\]\t\[\033[m\]|\[\e[1;34m\]\u\[\e[m\]:\[\e[0m\]\[\e[1;35m\][\W]\[\e[0m\]\n╰─> '
+PS1='\[\e]0;\u@\h: \w\a\]╭\[ \033[m\]|\[\033[1;36m\]\t\[\033[m\]|\[\e[1;34m\]\u\[\e[m\]:\[\e[0m\]\[\e[1;35m\][\W]\[\e[0m\]\n╰─> '
+source ~/.credentials
 source ~/.bash_aliases
-export EDITOR=vim
 
-export HISTSIZE=-1
-export HISTFILESIZE=-1
-cd ~
-cat ~/.cache/wal/sequences
+export EDITOR='/usr/bin/nvim'

@@ -1,18 +1,14 @@
-#!/bin/sh
-closed=0
-while [ true ]
-do
-  bat_pct=$(cat /sys/class/power_supply/BAT0/capacity)
-  bat_sta=$(cat /sys/class/power_supply/BAT0/status)
+#!/bin/bash
+LOW_BAT=15
+message="Low Battery!"
+color="#CC0000"
+notif="$message\n\n$color"
+if cat ~/.notification | grep -q "$message"; then
+	exit
+fi
 
-  if [[ $bat_pct -ge $LOW_BAT ]]; then
-    closed=0
-  fi
-  if [[ $bat_sta = 'Discharging' ]]; then
-    if [[ $bat_pct -le $LOW_BAT && $closed = 0 ]]; then
-      notify-send -i ~/icons/lowbat.png low\ battery -t 10000
-      closed=1
-    fi
-  fi
-  sleep 60
-done
+if [[ $(cat /sys/class/power_supply/BAT0/status) = 'Discharging' ]]; then
+	if [[ $(cat /sys/class/power_supply/BAT0/capacity) -le $LOW_BAT ]]; then
+		echo -e "Low Battery!\n\n#CC0000" >> ~/.notification
+	fi 
+fi
