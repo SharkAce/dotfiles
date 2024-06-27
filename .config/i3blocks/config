@@ -2,7 +2,7 @@
 command=scripts/notification.sh
 interval=1
 align=center
-min_width=1300
+min_width=1200
 separator=false
 signal=11
 
@@ -23,6 +23,11 @@ command=scripts/volume.sh
 interval=once
 signal=10
 
+[brightness]
+command=scripts/brightness.sh
+interval=once
+signal=11
+
 [cpu]
 command=scripts/cpu.sh
 interval=5
@@ -33,7 +38,7 @@ interval=5
 
 [weather]
 command=scripts/weather.sh
-interval=10
+interval=600
 
 [time]
 command=scripts/time.sh

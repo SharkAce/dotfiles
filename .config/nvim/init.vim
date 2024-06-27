@@ -19,6 +19,8 @@ Plug 'lervag/vimtex'
 Plug 'rhysd/vim-grammarous'
 Plug 'luochen1990/rainbow'
 Plug 'neoclide/coc-snippets'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'mhinz/vim-startify'
 
 " Initialize plugin system
 call plug#end()
@@ -26,12 +28,13 @@ call plug#end()
 autocmd VimEnter * :call system("xdotool key ctrl+F2 ctrl+equal ctrl+equal ctrl+equal")
 autocmd VimLeave * :call system("xdotool key ctrl+F2")
 
-
-" Initialize plugin system
+" NERDTREE config
 nnoremap <C-n> :NERDTreeToggle<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+let g:NERDTreeIgnore = ['^node_modules$', '\.o$', '\.d$','\~$']
+let g:NERDTreeMinimalUI = 1
 
 au BufRead,BufNewFile *.ludi set filetype=ludi
 " Initialize plugin system
@@ -51,21 +54,48 @@ set noshowmode
 set pumheight=10
 set mouse=a
 
+let g:startify_padding_left = 10
+let g:startify_custom_header = startify#pad([
+	\ '                               __                ',
+	\ '  ___      __    ___   __  __ /\_\    ___ ___    ',
+	\ '/'' _ `\  /''__`\ / __`\/\ \/\ \\/\ \ /'' __` __`\',
+	\ '/\ \/\ \/\  __//\ \L\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ',
+	\ '\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\',
+	\ ' \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/',
+	\ '',
+	\ ])
+    let g:startify_commands = [
+        \ {'f': ['Fuzzy find files', 'CtrlP']},
+        \ ]
 
-let g:NERDTreeIgnore = ['^node_modules$', '\.o$', '\~$']
+    let g:startify_lists = [
+          \ { 'type': 'files',     'header': ['   MRU']            },
+          \ { 'type': 'sessions',  'header': ['   Sessions']       },
+          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          \ { 'type': 'commands',  'header': ['   Commands']       },
+          \ ]
 
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" Ctrlp config
+let g:ctrlp_max_files = 0
+let g:ctrlp_max_depth = 6
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_custom_ignore = {
+	\ 'dir':  '\v[\/](\.git|\.vim|\.cache|\.mozilla|\.npm|\.local|node_modules|discord|apps)$',
+	\ 'file': '\v\.(exe|so|dll)$',
+	\ }
 
 colorscheme gruvbox
+hi WinSeparator guifg=#606060
 
 syntax enable
 
 " GrammarousCheck config
-command GrammarousCheckEn set spelllang=en-US | GrammarousCheck
-command GrammarousCheckFr set spelllang=fr | GrammarousCheck
+command! GrammarousCheckFr GrammarousCheck --lang=fr
 
 let g:grammarous#jar_url = 'https://www.languagetool.org/download/LanguageTool-5.9.zip'
-"let g:grammarous#use_vim_spelllang = 1
 let g:grammarous#hooks = {}
 function! g:grammarous#hooks.on_check(errs) abort
     nmap <buffer><C-n> <Plug>(grammarous-move-to-next-error)
@@ -83,6 +113,16 @@ function! g:grammarous#hooks.on_reset(errs) abort
     nunmap <buffer><C-a>
     nunmap <buffer><C-i>
     nunmap <buffer><C-d>
+endfunction
+
+command! WebdevIndent call SetSpaces()
+
+function! SetSpaces()
+  set expandtab
+  set shiftwidth=4
+  set softtabstop=4
+  set autoindent
+  set smartindent
 endfunction
 
 " lualine config

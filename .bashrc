@@ -30,3 +30,5 @@ source ~/.credentials
 source ~/.bash_aliases
 
 export EDITOR='/usr/bin/nvim'
+export PATH=test3:$PATH
+export PATH=test3:$PATH
